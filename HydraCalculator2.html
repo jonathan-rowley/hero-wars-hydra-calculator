@@ -1,692 +1,690 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<title>Hero Wars Hydra Calculator</title>
-	<meta charset="utf-8">
-	<meta name="author" content="HumanExhaust">
-	<meta name="description" content="Hydra Calculator for Hero Wars">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<meta charset="utf-8" />
+	<meta name="author" content="HumanExhaust" />
+	<meta name="description" content="Hydra Calculator for Hero Wars" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+	<link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 	<style>
-	table {
-		font-family: arial, sans-serif;
-		border-collapse: collapse;
-		width: 100%;
-	}
-	
-	td,
-	th {
-		border: 1px solid #dddddd;
-		text-align: center;
-		font-weight: bold;
-		padding: 8px;
-	}
-	
-	th {
-		background-color: white;
-	}
-	
-	img {
-		border: 1px solid #ddd;
-		border-radius: 4px;
-		padding: 5px;
-		width: 100px;
-		margin-right: auto;
-		margin-left: auto;
-	}
-	
-	button {
-		font-weight: bold;
-	}
-	
-	input {
-		border-radius: 0 !important;
-		text-align: center;
-	}
-	
-	.red {
-		background-color: red;
-		color: white;
-		font-weight: bold;
-	}
-	
-	.green {
-		background-color: green;
-		color: white;
-		font-weight: bold;
-	}
-	
-	.attack1 {
-		background-color: #ffdaf9 !important;
-	}
-	
-	.attack2 {
-		background-color: #ff74e9 !important;
-	}
-	
-	.hydra-darkness {
-		background-color: #638fa8;
-		color: black;
-		font-weight: bold;
-	}
-	
-	.hydra-water {
-		background-color: #29feff;
-		color: black;
-		font-weight: bold;
-	}
-	
-	.hydra-earth {
-		background-color: #afd64a;
-		color: black;
-		font-weight: bold;
-	}
-	
-	.hydra-light {
-		background-color: #fffb90;
-		color: black;
-		font-weight: bold;
-	}
-	
-	.hydra-wind {
-		background-color: #9984cc;
-		color: black;
-		font-weight: bold;
-	}
-	
-	.hydra-fire {
-		background-color: #ffd250;
-		color: black;
-		font-weight: bold;
-	}
-	
-	.hydra-common-toggle.active {
-		border-width: thick;
-		font-weight: bold;
-		font-size: 1.4em;
-	}
-	
-	.hydra-common-toggle {
-		background-color: #638fa8;
-		border-color: #add5e0;
-		text-align: center;
-		vertical-align: middle;
-		color: white;
-		font-size: 1em;
-	}
-	
-	.hydra-elder-toggle.active {
-		border-width: thick;
-		font-weight: bold;
-		font-size: 1.4em;
-	}
-	
-	.hydra-elder-toggle {
-		background-color: #0f4002;
-		border-color: #9dec8d;
-		text-align: center;
-		vertical-align: middle;
-		color: white;
-		font-size: 1em;
-	}
-	
-	.hydra-ancient-toggle.active {
-		border-width: thick;
-		font-weight: bold;
-		font-size: 1.4em;
-	}
-	
-	.hydra-ancient-toggle {
-		background-color: #002c86;
-		border-color: #d3dfff;
-		text-align: center;
-		vertical-align: middle;
-		color: white;
-		font-size: 1em;
-	}
-	
-	.hydra-dreadful-toggle.active {
-		border-width: thick;
-		font-weight: bold;
-		font-size: 1.4em;
-	}
-	
-	.hydra-dreadful-toggle {
-		background-color: #5f0173;
-		border-color: #e9caf5;
-		text-align: center;
-		vertical-align: middle;
-		color: white;
-		font-size: 1em;
-	}
-	
-	.hydra-legendary-toggle.active {
-		border-width: thick;
-		font-weight: bold;
-		font-size: 1.4em;
-	}
-	
-	.hydra-legendary-toggle {
-		background-color: #603c00;
-		border-color: #ffec5f;
-		text-align: center;
-		vertical-align: middle;
-		color: white;
-		font-size: 1em;
-	}
-	
-	.common-attack1 {
-		background-color: #638fa8 !important;
-		color: white;
-	}
-	
-	.common-attack2 {
-		background-color: #add5e0 !important;
-	}
-	
-	.elder-attack1 {
-		background-color: #0f4002 !important;
-		color: white;
-	}
-	
-	.elder-attack2 {
-		background-color: #9dec8d !important;
-	}
-	
-	.ancient-attack1 {
-		background-color: #002c86 !important;
-		color: white;
-	}
-	
-	.ancient-attack2 {
-		background-color: #d3dfff !important;
-	}
-	
-	.dreadful-attack1 {
-		background-color: #5f0173 !important;
-		color: white;
-	}
-	
-	.dreadful-attack2 {
-		background-color: #e9caf5 !important;
-	}
-	
-	.legendary-attack1 {
-		background-color: #603c00 !important;
-		color: white;
-	}
-	
-	.legendary-attack2 {
-		background-color: #ffec5f !important;
-	}
+		table {
+			font-family: arial, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
 
-	/*range slider*/
-	.range-wrap {
-		position: relative;
-		margin: 0 auto 3rem;
-	}
-	input[type=range] {
-		-webkit-appearance: none;
-		margin: 20px 0;
-		width: 100%;
-	}
-	input[type=range]:focus {
-		outline: none;
-	}
-	input[type=range]::-webkit-slider-runnable-track {
-		width: 100%;
-		height: 4px;
-		cursor: pointer;
-		animate: 0.2s;
-		background: #060607;
-		border-radius: 25px;
-	}
-	input[type=range]::-webkit-slider-thumb {
-		height: 20px;
-		width: 20px;
-		border-radius: 50%;
-		background: #fff;
-		box-shadow: 0 0 4px 0 rgba(0,0,0, 1);
-		cursor: pointer;
-		-webkit-appearance: none;
-		margin-top: -8px;
-	}
-	input[type=range]:focus::-webkit-slider-runnable-track {
-		background: #000000;
-	}
-	.range-wrap{
-		position: relative;
-	}
-	.range-value{
-		position: absolute;
-		top: -50%;
-	}
-	.range-value span{
-		min-width: 30px;
-		height: 24px;
-		line-height: 24px;
-		text-align: center;
-		background: #03a9f4;
-		color: #fff;
-		font-size: 12px;
-		display: block;
-		position: absolute;
-		left: 50%;
-		transform: translate(-50%, 0);
-		border-radius: 6px;
-		padding: 0 5px 0 5px;
-	}
-	.range-value span:before{
-		content: "";
-		position: absolute;
-		width: 0;
-		height: 0;
-		border-top: 10px solid #03a9f4;
-		border-left: 5px solid transparent;
-		border-right: 5px solid transparent;
-		top: 100%;
-		left: 50%;
-		margin-left: -5px;
-		margin-top: -1px;
-	}
+		td,
+		th {
+			border: 1px solid #dddddd;
+			text-align: center;
+			font-weight: bold;
+			padding: 8px;
+		}
+
+		th {
+			background-color: white;
+		}
+
+		img {
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			padding: 5px;
+			width: 100px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		button {
+			font-weight: bold;
+		}
+
+		input {
+			border-radius: 0 !important;
+			text-align: center;
+		}
+
+		.red {
+			background-color: red;
+			color: white;
+			font-weight: bold;
+		}
+
+		.green {
+			background-color: green;
+			color: white;
+			font-weight: bold;
+		}
+
+		.attack1 {
+			background-color: #ffdaf9 !important;
+		}
+
+		.attack2 {
+			background-color: #ff74e9 !important;
+		}
+
+		.hydra-darkness {
+			background-color: #638fa8;
+			color: black;
+			font-weight: bold;
+		}
+
+		.hydra-water {
+			background-color: #29feff;
+			color: black;
+			font-weight: bold;
+		}
+
+		.hydra-earth {
+			background-color: #afd64a;
+			color: black;
+			font-weight: bold;
+		}
+
+		.hydra-light {
+			background-color: #fffb90;
+			color: black;
+			font-weight: bold;
+		}
+
+		.hydra-wind {
+			background-color: #9984cc;
+			color: black;
+			font-weight: bold;
+		}
+
+		.hydra-fire {
+			background-color: #ffd250;
+			color: black;
+			font-weight: bold;
+		}
+
+		.hydra-common-toggle.active {
+			border-width: thick;
+			font-weight: bold;
+			font-size: 1.4em;
+		}
+
+		.hydra-common-toggle {
+			background-color: #638fa8;
+			border-color: #add5e0;
+			text-align: center;
+			vertical-align: middle;
+			color: white;
+			font-size: 1em;
+		}
+
+		.hydra-elder-toggle.active {
+			border-width: thick;
+			font-weight: bold;
+			font-size: 1.4em;
+		}
+
+		.hydra-elder-toggle {
+			background-color: #0f4002;
+			border-color: #9dec8d;
+			text-align: center;
+			vertical-align: middle;
+			color: white;
+			font-size: 1em;
+		}
+
+		.hydra-ancient-toggle.active {
+			border-width: thick;
+			font-weight: bold;
+			font-size: 1.4em;
+		}
+
+		.hydra-ancient-toggle {
+			background-color: #002c86;
+			border-color: #d3dfff;
+			text-align: center;
+			vertical-align: middle;
+			color: white;
+			font-size: 1em;
+		}
+
+		.hydra-dreadful-toggle.active {
+			border-width: thick;
+			font-weight: bold;
+			font-size: 1.4em;
+		}
+
+		.hydra-dreadful-toggle {
+			background-color: #5f0173;
+			border-color: #e9caf5;
+			text-align: center;
+			vertical-align: middle;
+			color: white;
+			font-size: 1em;
+		}
+
+		.hydra-legendary-toggle.active {
+			border-width: thick;
+			font-weight: bold;
+			font-size: 1.4em;
+		}
+
+		.hydra-legendary-toggle {
+			background-color: #603c00;
+			border-color: #ffec5f;
+			text-align: center;
+			vertical-align: middle;
+			color: white;
+			font-size: 1em;
+		}
+
+		.common-attack1 {
+			background-color: #638fa8 !important;
+			color: white;
+		}
+
+		.common-attack2 {
+			background-color: #add5e0 !important;
+		}
+
+		.elder-attack1 {
+			background-color: #0f4002 !important;
+			color: white;
+		}
+
+		.elder-attack2 {
+			background-color: #9dec8d !important;
+		}
+
+		.ancient-attack1 {
+			background-color: #002c86 !important;
+			color: white;
+		}
+
+		.ancient-attack2 {
+			background-color: #d3dfff !important;
+		}
+
+		.dreadful-attack1 {
+			background-color: #5f0173 !important;
+			color: white;
+		}
+
+		.dreadful-attack2 {
+			background-color: #e9caf5 !important;
+		}
+
+		.legendary-attack1 {
+			background-color: #603c00 !important;
+			color: white;
+		}
+
+		.legendary-attack2 {
+			background-color: #ffec5f !important;
+		}
+
+		/*range slider*/
+		.range-wrap {
+			position: relative;
+			margin: 0 auto 3rem;
+		}
+		input[type="range"] {
+			-webkit-appearance: none;
+			margin: 20px 0;
+			width: 100%;
+		}
+		input[type="range"]:focus {
+			outline: none;
+		}
+		input[type="range"]::-webkit-slider-runnable-track {
+			width: 100%;
+			height: 4px;
+			cursor: pointer;
+			animate: 0.2s;
+			background: #060607;
+			border-radius: 25px;
+		}
+		input[type="range"]::-webkit-slider-thumb {
+			height: 20px;
+			width: 20px;
+			border-radius: 50%;
+			background: #fff;
+			box-shadow: 0 0 4px 0 rgba(0, 0, 0, 1);
+			cursor: pointer;
+			-webkit-appearance: none;
+			margin-top: -8px;
+		}
+		input[type="range"]:focus::-webkit-slider-runnable-track {
+			background: #000000;
+		}
+		.range-wrap {
+			position: relative;
+		}
+		.range-value {
+			position: absolute;
+			top: -50%;
+		}
+		.range-value span {
+			min-width: 30px;
+			height: 24px;
+			line-height: 24px;
+			text-align: center;
+			background: #03a9f4;
+			color: #fff;
+			font-size: 12px;
+			display: block;
+			position: absolute;
+			left: 50%;
+			transform: translate(-50%, 0);
+			border-radius: 6px;
+			padding: 0 5px 0 5px;
+		}
+		.range-value span:before {
+			content: "";
+			position: absolute;
+			width: 0;
+			height: 0;
+			border-top: 10px solid #03a9f4;
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			top: 100%;
+			left: 50%;
+			margin-left: -5px;
+			margin-top: -1px;
+		}
 	</style>
 </head>
-
 <body>
-	<div class="jumbotron text-center">
-		<h1>Hero Wars Hydra Calculator</h1>
-		<p>This takes data from users and calculates the best outcome with the given input.</p>
-		<p>Be sure to select the correct hydra as you are entering data.</p>
-		<button class="navbar-toggler toggler-example" type="button" data-toggle="modal" data-target="#myModal" aria-controls="myModal"><span class="dark-blue-text"><i
-        class="fas fa-bars fa-1x"></i></span></button>
-		<br><br>
-		<div class="radio">
-			<div class="btn-group btn-group-toggle" data-toggle="buttons">
-				<label class="btn hydra-common-toggle active">
-					<input type="radio" name="hydra-toggle" id="common-toggle" value="common" autocomplete="off" onchange="displayPlayers();" checked> Common Hydra </label>
-				<label class="btn hydra-elder-toggle">
-					<input type="radio" name="hydra-toggle" id="elder-toggle" value="elder" autocomplete="off" onchange="displayPlayers();"> Elder Hydra </label>
-				<label class="btn hydra-ancient-toggle">
-					<input type="radio" name="hydra-toggle" id="ancient-toggle" value="ancient" autocomplete="off" onchange="displayPlayers();"> Ancient Hydra </label>
-				<label class="btn hydra-dreadful-toggle">
-					<input type="radio" name="hydra-toggle" id="dreadful-toggle" value="dreadful" autocomplete="off" onchange="displayPlayers();"> Dreadful Hydra </label>
-				<label class="btn hydra-legendary-toggle">
-					<input type="radio" name="hydra-toggle" id="legendary-toggle" value="legendary" autocomplete="off" onchange="displayPlayers();"> Legendary Hydra </label>
+<div class="jumbotron text-center">
+	<h1>Hero Wars Hydra Calculator</h1>
+	<p>This takes data from users and calculates the best outcome with the given input.</p>
+	<p>Be sure to select the correct hydra as you are entering data.</p>
+	<button class="navbar-toggler toggler-example" type="button" data-toggle="modal" data-target="#myModal" aria-controls="myModal">
+		<span class="dark-blue-text"><i class="fas fa-bars fa-1x"></i></span>
+	</button>
+	<br />
+	<br />
+	<div class="radio">
+		<div class="btn-group btn-group-toggle" data-toggle="buttons">
+			<label class="btn hydra-common-toggle active"> <input type="radio" name="hydra-toggle" id="common-toggle" value="common" autocomplete="off" onchange="displayPlayers();" checked /> Common Hydra </label>
+			<label class="btn hydra-elder-toggle"> <input type="radio" name="hydra-toggle" id="elder-toggle" value="elder" autocomplete="off" onchange="displayPlayers();" /> Elder Hydra </label>
+			<label class="btn hydra-ancient-toggle"> <input type="radio" name="hydra-toggle" id="ancient-toggle" value="ancient" autocomplete="off" onchange="displayPlayers();" /> Ancient Hydra </label>
+			<label class="btn hydra-dreadful-toggle"> <input type="radio" name="hydra-toggle" id="dreadful-toggle" value="dreadful" autocomplete="off" onchange="displayPlayers();" /> Dreadful Hydra </label>
+			<label class="btn hydra-legendary-toggle"> <input type="radio" name="hydra-toggle" id="legendary-toggle" value="legendary" autocomplete="off" onchange="displayPlayers();" /> Legendary Hydra </label>
+		</div>
+	</div>
+	<table id="allPlayers">
+		<thead>
+		<tr>
+			<th class="p-0">Player</th>
+			<th class="p-0">Attacks + Golden Horns</th>
+			<th class="p-0 hydra-darkness">
+				Maximum <br />
+				Darkness Damage
+			</th>
+			<th class="p-0 hydra-water">
+				Maximum <br />
+				Water Damage
+			</th>
+			<th class="p-0 hydra-earth">
+				Maximum <br />
+				Earth Damage
+			</th>
+			<th class="p-0 hydra-light">
+				Maximum <br />
+				Light Damage
+			</th>
+			<th class="p-0 hydra-wind">
+				Maximum <br />
+				Wind Damage
+			</th>
+			<th class="p-0 hydra-fire">
+				Maximum <br />
+				Fire Damage
+			</th>
+			<th class="p-0">Controls</th>
+		</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+	<div class="input-group mb-3">
+		<input type="text" class="form-control" id="player[name]" name="player[name]" placeholder="Add Player" aria-label="Add Player" aria-describedby="basic-addon2" />
+		<div class="input-group-append">
+			<button class="btn btn-outline-secondary" type="button" onclick="setPlayer();"><i class="fas fa-user-plus"></i></button>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<p><strong>Current head damage</strong></p>
+	<p>These sliding controls are to &quot;pre-set&quot; the heads damage in the event a player has already attacked.</p>
+	<p>Set these to the correct current damage per head and make sure to remove the players that have already attacked above before calculating.</p>
+	<div class="row">
+		<div class="col-lg-1 text-right text-middle">
+			<label for="range-darkness">Darkness</label>
+		</div>
+		<div class="col-lg-11">
+			<div class="range-wrap">
+				<div class="range-value" id="rangeV-darkness"></div>
+				<input id="range-darkness" type="range" min="0" step="1" />
 			</div>
 		</div>
-		<table id="allPlayers">
-			<thead>
+	</div>
+	<div class="row">
+		<div class="col-lg-1 text-right text-middle">
+			<label for="range-water">Water</label>
+		</div>
+		<div class="col-lg-11">
+			<div class="range-wrap">
+				<div class="range-value" id="rangeV-water"></div>
+				<input id="range-water" type="range" min="0" step="1" />
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-1 text-right text-middle">
+			<label for="range-earth">Earth</label>
+		</div>
+		<div class="col-lg-11">
+			<div class="range-wrap">
+				<div class="range-value" id="rangeV-earth"></div>
+				<input id="range-earth" type="range" min="0" step="1" />
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-1 text-right text-middle">
+			<label for="range-light">Light</label>
+		</div>
+		<div class="col-lg-11">
+			<div class="range-wrap">
+				<div class="range-value" id="rangeV-light"></div>
+				<input id="range-light" type="range" min="0" step="1" />
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-1 text-right text-middle">
+			<label for="range-wind">Wind</label>
+		</div>
+		<div class="col-lg-11">
+			<div class="range-wrap">
+				<div class="range-value" id="rangeV-wind"></div>
+				<input id="range-wind" type="range" min="0" step="1" />
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-1 text-right text-middle">
+			<label for="range-fire">Fire</label>
+		</div>
+		<div class="col-lg-11">
+			<div class="range-wrap">
+				<div class="range-value" id="rangeV-fire"></div>
+				<input id="range-fire" type="range" min="0" max="1000000" value="200" step="1" />
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 text-center">
+			<p>Once you have your maximum scores set for each player let's see what the attack prediction is.</p>
+			<button type="button" class="btn btn-default" onclick="getBestTest();">Calculate Attacks</button>
+		</div>
+	</div>
+</div>
+<div id="warResults" class="container-fluid" style="display: none;">
+	<div class="row">
+		<div class="col-sm-4">
+			<h2>Player Assigned Targets</h2>
+			<table id="assignedPlayers">
+				<thead>
 				<tr>
-					<th class="p-0">Player</th>
-					<th class="p-0">Attacks + Golden Horns</th>
-					<th class="p-0 hydra-darkness">Maximum
-						<br>Darkness Damage</th>
-					<th class="p-0 hydra-water">Maximum
-						<br>Water Damage</th>
-					<th class="p-0 hydra-earth">Maximum
-						<br>Earth Damage</th>
-					<th class="p-0 hydra-light">Maximum
-						<br>Light Damage</th>
-					<th class="p-0 hydra-wind">Maximum
-						<br>Wind Damage</th>
-					<th class="p-0 hydra-fire">Maximum
-						<br>Fire Damage</th>
-					<th class="p-0">Controls</th>
+					<th>Player</th>
+					<th>Attack</th>
+					<th>Hydra Target</th>
+					<th>Expected Damage</th>
+					<th>Hydra's Expected Damage</th>
 				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-		<div class="input-group mb-3">
-			<input type="text" class="form-control" id="player[name]" name="player[name]" placeholder="Add Player" aria-label="Add Player" aria-describedby="basic-addon2">
-			<div class="input-group-append">
-				<button class="btn btn-outline-secondary" type="button" onclick="setPlayer();"><i class="fas fa-user-plus"></i></button>
-			</div>
+				</thead>
+				<tbody></tbody>
+			</table>
 		</div>
-	</div>
-	<div class="container">
-		<p><strong>Current head damage</strong></p>
-		<p>These sliding controls are to &quot;pre-set&quot; the heads damage in the event a player has already attacked.</p>
-		<p>Set these to the correct current damage per head and make sure to remove the players that have already attacked above before calculating.</p>
-		<div class="row">
-			<div class="col-lg-1 text-right text-middle">
-				<label for="range-darkness">Darkness</label>
-			</div>
-			<div class="col-lg-11">
-				<div class="range-wrap">
-					<div class="range-value" id="rangeV-darkness"></div>
-					<input id="range-darkness" type="range" min="0" step="1">
-				</div>
-			</div>
+		<div class="col-sm-4">
+			<h2>Left over attacks for cleanup</h2>
+			<table id="leftOverAttacks">
+				<thead>
+				<tr>
+					<th>Player</th>
+					<th>Attacks Left</th>
+				</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
 		</div>
-
-		<div class="row">
-			<div class="col-lg-1 text-right text-middle">
-				<label for="range-water">Water</label>
-			</div>
-			<div class="col-lg-11">
-				<div class="range-wrap">
-					<div class="range-value" id="rangeV-water"></div>
-					<input id="range-water" type="range" min="0" step="1">
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-1 text-right text-middle">
-				<label for="range-earth">Earth</label>
-			</div>
-			<div class="col-lg-11">
-				<div class="range-wrap">
-					<div class="range-value" id="rangeV-earth"></div>
-					<input id="range-earth" type="range" min="0" step="1">
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-1 text-right text-middle">
-				<label for="range-light">Light</label>
-			</div>
-			<div class="col-lg-11">
-				<div class="range-wrap">
-					<div class="range-value" id="rangeV-light"></div>
-					<input id="range-light" type="range" min="0" step="1">
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-1 text-right text-middle">
-				<label for="range-wind">Wind</label>
-			</div>
-			<div class="col-lg-11">
-				<div class="range-wrap">
-					<div class="range-value" id="rangeV-wind"></div>
-					<input id="range-wind" type="range" min="0" step="1">
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-1 text-right text-middle">
-				<label for="range-fire">Fire</label>
-			</div>
-			<div class="col-lg-11">
-				<div class="range-wrap">
-					<div class="range-value" id="rangeV-fire"></div>
-					<input id="range-fire" type="range" min="0" max="1000000" value="200" step="1">
-				</div>
-			</div>
-		</div>
-
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 text-center">
-				<p>Once you have your maximum scores set for each player let's see what the attack prediction is.</p>
-				<button type="button" class="btn btn-default" onclick="getBestTest();">Calculate Attacks</button>
-			</div>
-		</div>
-	</div>
-	<div id="warResults" class="container-fluid" style="display:none;">
-		<div class="row">
-			<div class="col-sm-4">
-				<h2>Player Assigned Targets</h2>
-				<table id="assignedPlayers">
-					<thead>
-						<tr>
-							<th>Player</th>
-							<th>Attack</th>
-							<th>Hydra Target</th>
-							<th>Expected Damage</th>
-							<th>Hydra's Expected Damage</th>
-						</tr>
-					</thead>
-					<tbody> </tbody>
-				</table>
-			</div>
-			<div class="col-sm-4">
-				<h2>Left over attacks for cleanup</h2>
-				<table id="leftOverAttacks">
-					<thead>
-						<tr>
-							<th>Player</th>
-							<th>Attacks Left</th>
-						</tr>
-					</thead>
-					<tbody> </tbody>
-				</table>
-			</div>
-			<div class="col-sm-4">
-				<h2>Hydra Damage Stats</h2>
-				<table>
-					<thead>
-						<tr>
-							<th style="width: 25%">Hydra</th>
-							<th>Projected Damage</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td id="darkness-head">
-								<div class="head_image">
-									<div><img src="https://cdn2.omg.rocks/content/herowars/hydra/darkness.png" alt="Darkness"></div>
-								</div>
-							</td>
-							<td>
-								<div class="progress">
-									<div id="darknessProgress" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
-									<div id="darknessProgressDamage" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0</div>
-									<div id="darknessProgressHealth" class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td id="water-head">
-								<div class="head_image">
-									<div><img src="https://cdn2.omg.rocks/content/herowars/hydra/water.png" alt="Water"></div>
-								</div>
-							</td>
-							<td>
-								<div class="progress">
-									<div id="waterProgress" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
-									<div id="waterProgressDamage" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0</div>
-									<div id="waterProgressHealth" class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td id="earth-head">
-								<div class="head_image">
-									<div><img src="https://cdn2.omg.rocks/content/herowars/hydra/earth.png" alt="Earth"></div>
-								</div>
-							</td>
-							<td>
-								<div class="progress">
-									<div id="earthProgress" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
-									<div id="earthProgressDamage" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0</div>
-									<div id="earthProgressHealth" class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td id="light-head">
-								<div class="head_image">
-									<div><img src="https://cdn2.omg.rocks/content/herowars/hydra/light.png" alt="Light"></div>
-								</div>
-							</td>
-							<td>
-								<div class="progress">
-									<div id="lightProgress" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
-									<div id="lightProgressDamage" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0</div>
-									<div id="lightProgressHealth" class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td id="wind-head">
-								<div class="head_image">
-									<div><img src="https://cdn2.omg.rocks/content/herowars/hydra/wind.png" alt="Wind"></div>
-								</div>
-							</td>
-							<td>
-								<div class="progress">
-									<div id="windProgress" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
-									<div id="windProgressDamage" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0</div>
-									<div id="windProgressHealth" class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td id="fire-head">
-								<div class="head_image">
-									<div><img src="https://cdn2.omg.rocks/content/herowars/hydra/fire.png" alt="Fire"></div>
-								</div>
-							</td>
-							<td>
-								<div class="progress">
-									<div id="fireProgress" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
-									<div id="fireProgressDamage" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0</div>
-									<div id="fireProgressHealth" class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<!-- Footer -->
-	<footer class="text-center text-lg-start bg-light text-muted mt-5">
-		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);"> DISCLAIMER: I know that each attack is different depending on the Hero lineups. This calculator has some buffer allowance for this and should be used as a guide and not an absolutely accurate tool.
-			<br> Original Author: HumanExhaust @ <a href="https://discord.com/channels/@me" target="_blank">Discord: humanexhaust#4630</a></div>
-	</footer>
-	<!-- Modal -->
-	<div class="modal" id="myModal">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title">Settings</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-				<!-- Modal body -->
-				<div class="modal-body">
-					<div>
-						<h4>Update Hydra Total Scores</h4>
-						<p>
-							Here you can adjust each Hydra's total score. I have noticed that it can change from time to time when Nexters decide that a certain hero is too powerful for the Hydra. 
-							If the game is updated, you can modify the values here.
-						</p>
-						<p>
-							The Hydra Attack Buffer is here to give you control of how the algorithms choose which player to assign a hydra at the end of its total power. 
-							If a hydra head is 1,000 points from being destroyed this value prevents someone that does a lot of damage being used. Let us say the players 
-							attack would be 2,000,000 and the buffer is set to 1,000,000. This player would not be applied and another player that would do 5,000 damage 
-							would be chosen. You can play with these numbers for each hydra until you get results you like.
-						</p>
-						<table>
-							<thead>
-								<tr>
-									<th style="width: 25%">Hydra</th>
-									<th>Total Strength</th>
-									<th>Hydra Attack Buffer</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td class="p-0"> Common Hydra </td>
-									<td class="p-0">
-										<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydra[common]" name="hydra[common]" value="0" placeholder="0"> 
-									</td>
-									<td class="p-0">
-										<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydraBuffer[common]" name="hydraBuffer[common]" value="0" placeholder="0"> 
-									</td>
-								</tr>
-								<tr>
-									<td class="p-0"> Elder Hydra </td>
-									<td class="p-0">
-										<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydra[elder]" name="hydra[elder]" value="0" placeholder="0"> 
-									</td>
-									<td class="p-0">
-										<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydraBuffer[elder]" name="hydraBuffer[elder]" value="0" placeholder="0"> 
-									</td>
-								</tr>
-								<tr>
-									<td class="p-0"> Ancient Hydra </td>
-									<td class="p-0">
-										<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydra[ancient]" name="hydra[ancient]" value="0" placeholder="0"> 
-									</td>
-									<td class="p-0">
-										<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydraBuffer[ancient]" name="hydraBuffer[ancient]" value="0" placeholder="0"> 
-									</td>
-								</tr>
-								<tr>
-									<td class="p-0"> Dreadful Hydra </td>
-									<td class="p-0">
-										<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydra[dreadful]" name="hydra[dreadful]" value="0" placeholder="0"> 
-									</td>
-									<td class="p-0">
-										<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydraBuffer[dreadful]" name="hydraBuffer[dreadful]" value="0" placeholder="0"> 
-									</td>
-								</tr>
-								<tr>
-									<td class="p-0"> Legendary Hydra </td>
-									<td class="p-0">
-										<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydra[legendary]" name="hydra[legendary]" value="0" placeholder="0"> 
-									</td>
-									<td class="p-0">
-										<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydraBuffer[legendary]" name="hydraBuffer[legendary]" value="0" placeholder="0"> 
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<hr />
-						<h4>User Preferences</h4>
-						<hr />
-						<p><strong>Number Display</strong></p>
-						<p>This setting determines number output format. The numbers for each input must remain unformatted due to the nature of form controls.</p>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="numberFormat" value="full" id="fullNumberFormat" onchange="updateSettings();">
-							<label class="form-check-label" for="fullNumberFormat">
-								View full number format
-							</label>
+		<div class="col-sm-4">
+			<h2>Hydra Damage Stats</h2>
+			<table>
+				<thead>
+				<tr>
+					<th style="width: 25%;">Hydra</th>
+					<th>Projected Damage</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td id="darkness-head">
+						<div class="head_image">
+							<div><img src="https://cdn2.omg.rocks/content/herowars/hydra/darkness.png" alt="Darkness" /></div>
 						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="numberFormat" value="abbr" id="abbrNumberFormat" onchange="updateSettings();">
-							<label class="form-check-label" for="abbrNumberFormat">
-								View abbreviated number format
-							</label>
+					</td>
+					<td>
+						<div class="progress">
+							<div id="darknessProgress" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
+							<div id="darknessProgressDamage" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0</div>
+							<div id="darknessProgressHealth" class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
 						</div>
+					</td>
+				</tr>
+				<tr>
+					<td id="water-head">
+						<div class="head_image">
+							<div><img src="https://cdn2.omg.rocks/content/herowars/hydra/water.png" alt="Water" /></div>
+						</div>
+					</td>
+					<td>
+						<div class="progress">
+							<div id="waterProgress" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
+							<div id="waterProgressDamage" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0</div>
+							<div id="waterProgressHealth" class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td id="earth-head">
+						<div class="head_image">
+							<div><img src="https://cdn2.omg.rocks/content/herowars/hydra/earth.png" alt="Earth" /></div>
+						</div>
+					</td>
+					<td>
+						<div class="progress">
+							<div id="earthProgress" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
+							<div id="earthProgressDamage" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0</div>
+							<div id="earthProgressHealth" class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td id="light-head">
+						<div class="head_image">
+							<div><img src="https://cdn2.omg.rocks/content/herowars/hydra/light.png" alt="Light" /></div>
+						</div>
+					</td>
+					<td>
+						<div class="progress">
+							<div id="lightProgress" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
+							<div id="lightProgressDamage" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0</div>
+							<div id="lightProgressHealth" class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td id="wind-head">
+						<div class="head_image">
+							<div><img src="https://cdn2.omg.rocks/content/herowars/hydra/wind.png" alt="Wind" /></div>
+						</div>
+					</td>
+					<td>
+						<div class="progress">
+							<div id="windProgress" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
+							<div id="windProgressDamage" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0</div>
+							<div id="windProgressHealth" class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td id="fire-head">
+						<div class="head_image">
+							<div><img src="https://cdn2.omg.rocks/content/herowars/hydra/fire.png" alt="Fire" /></div>
+						</div>
+					</td>
+					<td>
+						<div class="progress">
+							<div id="fireProgress" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
+							<div id="fireProgressDamage" class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">0</div>
+							<div id="fireProgressHealth" class="progress-bar progress-bar-striped bg-dark" role="progressbar" style="width: 100%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">0</div>
+						</div>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted mt-5">
+	<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+		DISCLAIMER: I know that each attack is different depending on the Hero lineups. This calculator has some buffer allowance for this and should be used as a guide and not an absolutely accurate tool. <br />
+		Original Author: HumanExhaust @ <a href="https://discord.com/channels/@me" target="_blank">Discord: humanexhaust#4630</a>
+	</div>
+</footer>
+<!-- Modal -->
+<div class="modal" id="myModal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title">Settings</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<!-- Modal body -->
+			<div class="modal-body">
+				<div>
+					<h4>Update Hydra Total Scores</h4>
+					<p>
+						Here you can adjust each Hydra's total score. I have noticed that it can change from time to time when Nexters decide that a certain hero is too powerful for the Hydra. If the game is updated, you can modify
+						the values here.
+					</p>
+					<p>
+						The Hydra Attack Buffer is here to give you control of how the algorithms choose which player to assign a hydra at the end of its total power. If a hydra head is 1,000 points from being destroyed this value
+						prevents someone that does a lot of damage being used. Let us say the players attack would be 2,000,000 and the buffer is set to 1,000,000. This player would not be applied and another player that would do
+						5,000 damage would be chosen. You can play with these numbers for each hydra until you get results you like.
+					</p>
+					<table>
+						<thead>
+						<tr>
+							<th style="width: 25%;">Hydra</th>
+							<th>Total Strength</th>
+							<th>Hydra Attack Buffer</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td class="p-0">Common Hydra</td>
+							<td class="p-0">
+								<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydra[common]" name="hydra[common]" value="0" placeholder="0" />
+							</td>
+							<td class="p-0">
+								<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydraBuffer[common]" name="hydraBuffer[common]" value="0" placeholder="0" />
+							</td>
+						</tr>
+						<tr>
+							<td class="p-0">Elder Hydra</td>
+							<td class="p-0">
+								<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydra[elder]" name="hydra[elder]" value="0" placeholder="0" />
+							</td>
+							<td class="p-0">
+								<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydraBuffer[elder]" name="hydraBuffer[elder]" value="0" placeholder="0" />
+							</td>
+						</tr>
+						<tr>
+							<td class="p-0">Ancient Hydra</td>
+							<td class="p-0">
+								<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydra[ancient]" name="hydra[ancient]" value="0" placeholder="0" />
+							</td>
+							<td class="p-0">
+								<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydraBuffer[ancient]" name="hydraBuffer[ancient]" value="0" placeholder="0" />
+							</td>
+						</tr>
+						<tr>
+							<td class="p-0">Dreadful Hydra</td>
+							<td class="p-0">
+								<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydra[dreadful]" name="hydra[dreadful]" value="0" placeholder="0" />
+							</td>
+							<td class="p-0">
+								<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydraBuffer[dreadful]" name="hydraBuffer[dreadful]" value="0" placeholder="0" />
+							</td>
+						</tr>
+						<tr>
+							<td class="p-0">Legendary Hydra</td>
+							<td class="p-0">
+								<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydra[legendary]" name="hydra[legendary]" value="0" placeholder="0" />
+							</td>
+							<td class="p-0">
+								<input onchange="updateHydra();" class="form-control p-0" type="number" min="0" id="hydraBuffer[legendary]" name="hydraBuffer[legendary]" value="0" placeholder="0" />
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<hr />
+					<h4>User Preferences</h4>
+					<hr />
+					<p><strong>Number Display</strong></p>
+					<p>This setting determines number output format. The numbers for each input must remain unformatted due to the nature of form controls.</p>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="numberFormat" value="full" id="fullNumberFormat" onchange="updateSettings();" />
+						<label class="form-check-label" for="fullNumberFormat">
+							View full number format
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="numberFormat" value="abbr" id="abbrNumberFormat" onchange="updateSettings();" />
+						<label class="form-check-label" for="abbrNumberFormat">
+							View abbreviated number format
+						</label>
 					</div>
 				</div>
-				<!-- Modal footer -->
-				<div class="modal-footer justify-content-between">
-
-						<button type="button" class="btn btn-primary " onclick="randomMessage()">Click Me</button>
-						<span id="randomMessage"></span>
-
-
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-				</div>
+			</div>
+			<!-- Modal footer -->
+			<div class="modal-footer justify-content-between">
+				<button type="button" class="btn btn-primary" onclick="randomMessage()">Click Me</button>
+				<span id="randomMessage"></span>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<script>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
 	// parse number into shorthand
 	function shpn(num) {
-		if(num > 999 && num < 1000000){
-			return (num/1000).toFixed(1) + 'K'; // convert to K for number from > 1000 < 1 million
-		} else if(num > 1000000){
-			return (num/1000000).toFixed(1) + 'M'; // convert to M for number from > 1 million
-		} else if(num > 1000000000){
-			return (num/1000000000).toFixed(1) + 'B'; // convert to M for number from > 1 billion
-		} else if(num < 900){
+		if (num > 999 && num < 1000000) {
+			return (num / 1000).toFixed(1) + "K"; // convert to K for number from > 1000 < 1 million
+		} else if (num > 1000000) {
+			return (num / 1000000).toFixed(1) + "M"; // convert to M for number from > 1 million
+		} else if (num > 1000000000) {
+			return (num / 1000000000).toFixed(1) + "B"; // convert to M for number from > 1 billion
+		} else if (num < 900) {
 			return num; // if value < 1000, nothing to do
 		}
 	}
@@ -695,7 +693,7 @@
 		if (JSON.parse(localStorage.getItem("settings"))["displayNumberFormat"] == "abbr") {
 			return shpn(num);
 		} else {
-			var num_parts = num.toString().split(".");
+			let num_parts = num.toString().split(".");
 			num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			return num_parts.join(".");
 		}
@@ -703,22 +701,22 @@
 
 	function sortObjByKey(obj, order) {
 		"use strict";
-		var key,
+		let key,
 			tempArry = [],
 			i,
 			tempObj = {};
-		for(key in obj) {
+		for (key in obj) {
 			tempArry.push(key);
 		}
-		tempArry.sort(function(a, b) {
+		tempArry.sort(function (a, b) {
 			return a.toLowerCase().localeCompare(b.toLowerCase());
 		});
-		if(order === 'desc') {
-			for(i = tempArry.length - 1; i >= 0; i--) {
+		if (order === "desc") {
+			for (i = tempArry.length - 1; i >= 0; i--) {
 				tempObj[tempArry[i]] = obj[tempArry[i]];
 			}
 		} else {
-			for(i = 0; i < tempArry.length; i++) {
+			for (i = 0; i < tempArry.length; i++) {
 				tempObj[tempArry[i]] = obj[tempArry[i]];
 			}
 		}
@@ -726,15 +724,15 @@
 	}
 
 	function displayHydra() {
-		var fullHydras = JSON.parse(localStorage.getItem("hydras"));
-		var fullHydrasBuffer = JSON.parse(localStorage.getItem("overageHydraBuffer"));
-		
+		let fullHydras = JSON.parse(localStorage.getItem("hydras")),
+			fullHydrasBuffer = JSON.parse(localStorage.getItem("overageHydraBuffer"));
+
 		document.getElementById("hydra[common]").value = fullHydras["common"];
 		document.getElementById("hydra[elder]").value = fullHydras["elder"];
 		document.getElementById("hydra[ancient]").value = fullHydras["ancient"];
 		document.getElementById("hydra[dreadful]").value = fullHydras["dreadful"];
 		document.getElementById("hydra[legendary]").value = fullHydras["legendary"];
-		
+
 		document.getElementById("hydraBuffer[common]").value = fullHydrasBuffer["common"];
 		document.getElementById("hydraBuffer[elder]").value = fullHydrasBuffer["elder"];
 		document.getElementById("hydraBuffer[ancient]").value = fullHydrasBuffer["ancient"];
@@ -745,58 +743,130 @@
 	function updateHydra() {
 		let fullHydras = JSON.parse(localStorage.getItem("hydras")),
 			fullHydrasBuffer = JSON.parse(localStorage.getItem("overageHydraBuffer"));
-		
+
 		fullHydras["common"] = returnInt(document.getElementById("hydra[common]").value);
 		fullHydras["elder"] = returnInt(document.getElementById("hydra[elder]").value);
 		fullHydras["ancient"] = returnInt(document.getElementById("hydra[ancient]").value);
 		fullHydras["dreadful"] = returnInt(document.getElementById("hydra[dreadful]").value);
 		fullHydras["legendary"] = returnInt(document.getElementById("hydra[legendary]").value);
-		
+
 		fullHydrasBuffer["common"] = returnInt(document.getElementById("hydraBuffer[common]").value);
 		fullHydrasBuffer["elder"] = returnInt(document.getElementById("hydraBuffer[elder]").value);
 		fullHydrasBuffer["ancient"] = returnInt(document.getElementById("hydraBuffer[ancient]").value);
 		fullHydrasBuffer["dreadful"] = returnInt(document.getElementById("hydraBuffer[dreadful]").value);
 		fullHydrasBuffer["legendary"] = returnInt(document.getElementById("hydraBuffer[legendary]").value);
-		
-		localStorage.setItem('hydras', JSON.stringify(fullHydras));
-		localStorage.setItem('overageHydraBuffer', JSON.stringify(fullHydrasBuffer));
+
+		localStorage.setItem("hydras", JSON.stringify(fullHydras));
+		localStorage.setItem("overageHydraBuffer", JSON.stringify(fullHydrasBuffer));
 	}
 
 	function updateSettings() {
 		let settings = JSON.parse(localStorage.getItem("settings"));
 
-		settings["displayNumberFormat"] = $('input[name=numberFormat]:checked').val();
+		settings["displayNumberFormat"] = $("input[name=numberFormat]:checked").val();
 
-		localStorage.setItem('settings', JSON.stringify(settings));
+		localStorage.setItem("settings", JSON.stringify(settings));
 	}
 
 	function displayPlayers() {
-		var players = sortObjByKey(JSON.parse(localStorage.getItem("players")), "asc");
-		var hydra = $('input[name="hydra-toggle"]:checked').val();
+		let players = sortObjByKey(JSON.parse(localStorage.getItem("players")), "asc"),
+			hydra = $('input[name="hydra-toggle"]:checked').val();
 		$("#allPlayers").find("tr:gt(0)").remove();
-		
-		for(var key in players) {
-			var html = "";
-			if(players.hasOwnProperty(key)) {
-				var name = players[key].name.replace(/ /g, "-");
-				
+
+		for (let key in players) {
+			let html = "";
+			if (players.hasOwnProperty(key)) {
+				let name = players[key].name.replace(/ /g, "-");
 				var canAttack = players[key]["allowed_targets"][hydra];
-				
-				
 				html += "<tr>";
-				html += '<td class="p-0"><div class="form-check"><input onchange="updatePlayer(\'' + name + '\');" class="form-check-input" type="checkbox" value="" id="playerIncluded[' + hydra + '][' + key + ']" ><label class="form-check-label" for="playerIncluded[' + hydra + '][' + key + ']">' + players[key].name + '</label></div></th>';
-				html += '<td class="p-0"><input onchange="updatePlayer(\'' + name + '\');" class="form-control p-0" type="number" min="0" id="' + name + '[attacks]" name="' + name + '[attacks]" value="' + players[key].attacks + '" placeholder="3" /></td>';
-				html += '<td class="p-0"><input onchange="updatePlayer(\'' + name + '\');" class="form-control p-0 hydra-darkness" type="number" min="0" id="' + name + '[darkness]" name="' + name + '[darkness]" value="' + players[key][hydra].darkness + '" placeholder="0" /></td>';
-				html += '<td class="p-0"><input onchange="updatePlayer(\'' + name + '\');" class="form-control p-0 hydra-water" type="number" min="0" id="' + name + '[water]" name="' + name + '[water]" value="' + players[key][hydra].water + '" placeholder="0" /></td>';
-				html += '<td class="p-0"><input onchange="updatePlayer(\'' + name + '\');" class="form-control p-0 hydra-earth" type="number" min="0" id="' + name + '[earth]" name="' + name + '[earth]" value="' + players[key][hydra].earth + '" placeholder="0" /></td>';
-				html += '<td class="p-0"><input onchange="updatePlayer(\'' + name + '\');" class="form-control p-0 hydra-light" type="number" min="0" id="' + name + '[light]" name="' + name + '[light]" value="' + players[key][hydra].light + '" placeholder="0" /></td>';
-				html += '<td class="p-0"><input onchange="updatePlayer(\'' + name + '\');" class="form-control p-0 hydra-wind" type="number" min="0" id="' + name + '[wind]" name="' + name + '[wind]" value="' + players[key][hydra].wind + '" placeholder="0" /></td>';
-				html += '<td class="p-0"><input onchange="updatePlayer(\'' + name + '\');" class="form-control p-0 hydra-fire" type="number" min="0" id="' + name + '[fire]" name="' + name + '[fire]" value="' + players[key][hydra].fire + '" placeholder="0" /></td>';
+				html +=
+					'<td class="p-0"><div class="form-check"><input onchange="updatePlayer(\'' +
+					name +
+					'\');" class="form-check-input" type="checkbox" value="" id="playerIncluded[' +
+					hydra +
+					"][" +
+					key +
+					']" ><label class="form-check-label" for="playerIncluded[' +
+					hydra +
+					"][" +
+					key +
+					']">' +
+					players[key].name +
+					"</label></div></th>";
+				html +=
+					'<td class="p-0"><input onchange="updatePlayer(\'' +
+					name +
+					'\');" class="form-control p-0" type="number" min="0" id="' +
+					name +
+					'[attacks]" name="' +
+					name +
+					'[attacks]" value="' +
+					players[key].attacks +
+					'" placeholder="3" /></td>';
+				html +=
+					'<td class="p-0"><input onchange="updatePlayer(\'' +
+					name +
+					'\');" class="form-control p-0 hydra-darkness" type="number" min="0" id="' +
+					name +
+					'[darkness]" name="' +
+					name +
+					'[darkness]" value="' +
+					players[key][hydra].darkness +
+					'" placeholder="0" /></td>';
+				html +=
+					'<td class="p-0"><input onchange="updatePlayer(\'' +
+					name +
+					'\');" class="form-control p-0 hydra-water" type="number" min="0" id="' +
+					name +
+					'[water]" name="' +
+					name +
+					'[water]" value="' +
+					players[key][hydra].water +
+					'" placeholder="0" /></td>';
+				html +=
+					'<td class="p-0"><input onchange="updatePlayer(\'' +
+					name +
+					'\');" class="form-control p-0 hydra-earth" type="number" min="0" id="' +
+					name +
+					'[earth]" name="' +
+					name +
+					'[earth]" value="' +
+					players[key][hydra].earth +
+					'" placeholder="0" /></td>';
+				html +=
+					'<td class="p-0"><input onchange="updatePlayer(\'' +
+					name +
+					'\');" class="form-control p-0 hydra-light" type="number" min="0" id="' +
+					name +
+					'[light]" name="' +
+					name +
+					'[light]" value="' +
+					players[key][hydra].light +
+					'" placeholder="0" /></td>';
+				html +=
+					'<td class="p-0"><input onchange="updatePlayer(\'' +
+					name +
+					'\');" class="form-control p-0 hydra-wind" type="number" min="0" id="' +
+					name +
+					'[wind]" name="' +
+					name +
+					'[wind]" value="' +
+					players[key][hydra].wind +
+					'" placeholder="0" /></td>';
+				html +=
+					'<td class="p-0"><input onchange="updatePlayer(\'' +
+					name +
+					'\');" class="form-control p-0 hydra-fire" type="number" min="0" id="' +
+					name +
+					'[fire]" name="' +
+					name +
+					'[fire]" value="' +
+					players[key][hydra].fire +
+					'" placeholder="0" /></td>';
 				html += '<td class="p-0"><button type="button" class="btn btn-default ml-2 mr-2 pt-0 pb-0 pl-1 pr-1 red" onclick="deletePlayer(\'' + name + '\');"><i class="fas fa-user-minus"></i></button></td>';
 				html += "</tr>";
 			}
-			$('#allPlayers tr:last').after(html);
-			
+			$("#allPlayers tr:last").after(html);
 			document.getElementById("playerIncluded[" + hydra + "][" + key + "]").checked = canAttack;
 		}
 		displayHydraDamageSliders();
@@ -804,122 +874,121 @@
 	}
 
 	function returnInt(value) {
-		if(value == '' || value == null) {
+		if (value == "" || value == null) {
 			return 0;
 		}
 		return parseInt(value, 10);
 	}
 
 	function setPlayer() {
-		if(document.getElementById("player[name]").value == '') {
+		if (document.getElementById("player[name]").value == "") {
 			alert("Your Player must have a name.");
 			return;
 		}
-		var players = JSON.parse(localStorage.getItem("players"));
-		var newPlayer = {
-			"name": document.getElementById("player[name]").value,
-			"attacks": 3,
-			"attacks_left": 3,
-			"allowed_targets": {
-				"common": true,
-				"elder": true,
-				"ancient": true,
-				"dreadful": true,
-				"legendary": true,
+		let players = JSON.parse(localStorage.getItem("players")),
+			name = document.getElementById("player[name]").value.replace(/ /g, "-");
+		players[name] = {
+			name: document.getElementById("player[name]").value,
+			attacks: 3,
+			attacks_left: 3,
+			allowed_targets: {
+				common: true,
+				elder: true,
+				ancient: true,
+				dreadful: true,
+				legendary: true,
 			},
-			"common": {
-				"darkness": 0,
-				"water": 0,
-				"earth": 0,
-				"light": 0,
-				"wind": 0,
-				"fire": 0,
+			common: {
+				darkness: 0,
+				water: 0,
+				earth: 0,
+				light: 0,
+				wind: 0,
+				fire: 0,
 			},
-			"elder": {
-				"darkness": 0,
-				"water": 0,
-				"earth": 0,
-				"light": 0,
-				"wind": 0,
-				"fire": 0,
+			elder: {
+				darkness: 0,
+				water: 0,
+				earth: 0,
+				light: 0,
+				wind: 0,
+				fire: 0,
 			},
-			"ancient": {
-				"darkness": 0,
-				"water": 0,
-				"earth": 0,
-				"light": 0,
-				"wind": 0,
-				"fire": 0,
+			ancient: {
+				darkness: 0,
+				water: 0,
+				earth: 0,
+				light: 0,
+				wind: 0,
+				fire: 0,
 			},
-			"dreadful": {
-				"darkness": 0,
-				"water": 0,
-				"earth": 0,
-				"light": 0,
-				"wind": 0,
-				"fire": 0,
+			dreadful: {
+				darkness: 0,
+				water: 0,
+				earth: 0,
+				light: 0,
+				wind: 0,
+				fire: 0,
 			},
-			"legendary": {
-				"darkness": 0,
-				"water": 0,
-				"earth": 0,
-				"light": 0,
-				"wind": 0,
-				"fire": 0,
+			legendary: {
+				darkness: 0,
+				water: 0,
+				earth: 0,
+				light: 0,
+				wind: 0,
+				fire: 0,
 			},
 		};
-		var name = document.getElementById("player[name]").value.replace(/ /g, "-");
-		players[name] = newPlayer;
-		localStorage.setItem('players', JSON.stringify(players));
+		localStorage.setItem("players", JSON.stringify(players));
 		// reset inputs
-		document.getElementById("player[name]").value = '';
+		document.getElementById("player[name]").value = "";
 		displayPlayers();
 	}
 
 	function updatePlayer(name) {
-		var players = JSON.parse(localStorage.getItem("players"));
-		var hydra = $('input[name="hydra-toggle"]:checked').val();
+		let players = JSON.parse(localStorage.getItem("players")),
+			hydra = $('input[name="hydra-toggle"]:checked').val(),
+			checked = false;
 		players[name]["name"] = players[name]["name"];
 		players[name]["attacks"] = returnInt(document.getElementById(name + "[attacks]").value);
 		players[name]["attacks_left"] = returnInt(document.getElementById(name + "[attacks]").value);
 		players[name][hydra] = {
-			"darkness": returnInt(document.getElementById(name + "[darkness]").value),
-			"water": returnInt(document.getElementById(name + "[water]").value),
-			"earth": returnInt(document.getElementById(name + "[earth]").value),
-			"light": returnInt(document.getElementById(name + "[light]").value),
-			"wind": returnInt(document.getElementById(name + "[wind]").value),
-			"fire": returnInt(document.getElementById(name + "[fire]").value),
+			darkness: returnInt(document.getElementById(name + "[darkness]").value),
+			water: returnInt(document.getElementById(name + "[water]").value),
+			earth: returnInt(document.getElementById(name + "[earth]").value),
+			light: returnInt(document.getElementById(name + "[light]").value),
+			wind: returnInt(document.getElementById(name + "[wind]").value),
+			fire: returnInt(document.getElementById(name + "[fire]").value),
 		};
-		var checked = false;
-		if (document.getElementById('playerIncluded[' + hydra + '][' + name + ']').checked) {
-            checked = true;
-        }
+		if (document.getElementById("playerIncluded[" + hydra + "][" + name + "]").checked) {
+			checked = true;
+		}
 		players[name]["allowed_targets"][hydra] = checked;
-		localStorage.setItem('players', JSON.stringify(players));
+		localStorage.setItem("players", JSON.stringify(players));
 	}
 
 	function deletePlayer(name) {
-		var players = JSON.parse(localStorage.getItem("players"));
+		let players = JSON.parse(localStorage.getItem("players"));
 		delete players[name];
-		localStorage.setItem('players', JSON.stringify(players));
+		localStorage.setItem("players", JSON.stringify(players));
 		displayPlayers();
 	}
 
 	function sortHydras(obj, dir = "desc") {
 		// convert object into array
-		var sortable = [];
-		for(var key in obj) {
-			if(obj.hasOwnProperty(key)) {
+		let sortable = [];
+		for (let key in obj) {
+			if (obj.hasOwnProperty(key)) {
 				sortable.push([key, obj[key]]); // each item is an array in format [key, value]
 			}
 		}
 		// sort items by value
-		if(dir == "desc") {
-			sortable.sort(function(a, b) {
+		if (dir == "desc") {
+			sortable.sort(function (a, b) {
 				return b[1] - a[1]; // compare numbers
 			});
 		} else {
-			sortable.sort(function(a, b) {
+			sortable.sort(function (a, b) {
 				return a[1] - b[1]; // compare numbers
 			});
 		}
@@ -928,19 +997,19 @@
 
 	function sortMembers(obj, hydra, dir = "desc") {
 		// convert object into array
-		var sortable = [];
-		for(var key in obj) {
-			if(obj.hasOwnProperty(key)) {
+		let sortable = [];
+		for (let key in obj) {
+			if (obj.hasOwnProperty(key)) {
 				sortable.push([key, obj[key]]); // each item is an array in format [key, value]
 			}
 		}
 		// sort items by value
-		if(dir == "desc") {
-			sortable.sort(function(a, b) {
+		if (dir == "desc") {
+			sortable.sort(function (a, b) {
 				return b[1][hydra] - a[1][hydra]; // compare numbers
 			});
 		} else {
-			sortable.sort(function(a, b) {
+			sortable.sort(function (a, b) {
 				return a[1][hydra] - b[1][hydra]; // compare numbers
 			});
 		}
@@ -948,34 +1017,32 @@
 	}
 	// attack function
 	function runTest(members, fullHydras, hydraOrder = "desc", memberOrder = "desc") {
-
 		let hydra = $('input[name="hydra-toggle"]:checked').val(),
-			hydraDamage = JSON.parse(localStorage.getItem("hydrasDamage")),
 			// gotta order hydras first
 			orderedHydras = {
-				"darkness": 0,
-				"water": 0,
-				"earth": 0,
-				"light": 0,
-				"wind": 0,
-				"fire": 0,
+				darkness: 0,
+				water: 0,
+				earth: 0,
+				light: 0,
+				wind: 0,
+				fire: 0,
 			},
 			finalResult = {
-				"darkness": 0,
-				"water": 0,
-				"earth": 0,
-				"light": 0,
-				"wind": 0,
-				"fire": 0,
+				darkness: 0,
+				water: 0,
+				earth: 0,
+				light: 0,
+				wind: 0,
+				fire: 0,
 			},
-			unalteredHydraHealth = JSON.parse(localStorage.getItem("hydras"))[hydra]/6,
+			unalteredHydraHealth = JSON.parse(localStorage.getItem("hydras"))[hydra] / 6,
 			hydraBuffers = JSON.parse(localStorage.getItem("overageHydraBuffer"))[hydra];
 		// loop through each member so we can get their hydra that we can do the most damage to
-		jQuery.each(members, function(member1, scores1) {
+		jQuery.each(members, function (member1, scores1) {
 			// and then loop through each of their scores so we can see who is the strongest
-			jQuery.each(scores1[hydra], function(hydra1, score1) {
+			jQuery.each(scores1[hydra], function (hydra1, score1) {
 				// skip unnecessary fields for each member
-				if(hydra1 === "attacks" || hydra1 === "name" || hydra1 === "attacks_left") {
+				if (hydra1 === "attacks" || hydra1 === "name" || hydra1 === "attacks_left") {
 					return;
 				}
 				// now we add all the members top scores against all hydras
@@ -989,60 +1056,58 @@
 		// now we have our hydras ordered by the damage we can do as a whole
 		// the next step is to loop through these hydras and order the members attacks based on input asc or desc
 		// loop through Hydras and order members by highest value
-		jQuery.each(orderedHydras, function(key, hval) {
-
+		jQuery.each(orderedHydras, function (key, hval) {
 			let fullHydra = hval[0],
 				strength = hval[1],
 				// grab the full strength value for the current hydra so we can subtract from it as we do damage
 				hydraStrength = fullHydras[fullHydra], // - hydraDamage[fullHydra][hydra]
 				// sorting members by the current hydra depending on request
 				orderedMembers = sortMembers(members, fullHydra, memberOrder),
-				newBuffer = hydraBuffers+(unalteredHydraHealth-fullHydras[fullHydra]);
+				newBuffer = hydraBuffers + (unalteredHydraHealth - fullHydras[fullHydra]);
 			// now that they are ordered we loop through members
-			jQuery.each(orderedMembers, function(mkey, mval) {
+			jQuery.each(orderedMembers, function (mkey, mval) {
 				let member = mval[0],
-					scores = mval[1];
+						scores = mval[1];
 				// check if they have attacks left and skip if not
-				if(members[member]["attacks_left"] < 1) {
+				if (members[member]["attacks_left"] < 1) {
 					return;
 				}
 				// check if they are allowed to battle this hydra
-				if(!members[member]["allowed_targets"][hydra]) {
+				if (!members[member]["allowed_targets"][hydra]) {
 					return;
 				}
 				// get the score from the player for this hydra
 				let score = members[member][hydra][fullHydra];
 				// if zero skip because they did not provide a score so we dont know
-				if(score < 1) {
+				if (score < 1) {
 					return;
 				}
 				// loop through hydra scores depending on attacks left
-				for (let loopCnt = 0; loopCnt = members[member]["attacks_left"]; loopCnt++) {
-					if(members[member]["attacks_left"] < 1) {
+				for (let loopCnt = 0; (loopCnt = members[member]["attacks_left"]); loopCnt++) {
+					if (members[member]["attacks_left"] < 1) {
 						return;
 					}
 					// if greater than zero pull the hydra and see if we add to it.
-					if(finalResult[fullHydra] < hydraStrength) {
-
-						if ((hydraStrength + parseInt(newBuffer)) < (finalResult[fullHydra] + score)) {
+					if (finalResult[fullHydra] < hydraStrength) {
+						if (hydraStrength + parseInt(newBuffer) < finalResult[fullHydra] + score) {
 							return;
 						}
 						// gotta count the current user attacks
 						let attackCount = 0;
-						for(let k in finalResult[member]) {
-							if(finalResult[member].hasOwnProperty(k)) {
+						for (let k in finalResult[member]) {
+							if (finalResult[member].hasOwnProperty(k)) {
 								++attackCount;
 							}
 						}
 						let memberAttack = fullHydra + members[member]["attacks_left"];
 						finalResult[member][memberAttack] = {};
 						members[member]["attacks_left"] = members[member]["attacks_left"] - 1;
-						finalResult[fullHydra] = (finalResult[fullHydra] + score) > hydraStrength ? hydraStrength : finalResult[fullHydra] + score;
+						finalResult[fullHydra] = finalResult[fullHydra] + score > hydraStrength ? hydraStrength : finalResult[fullHydra] + score;
 						finalResult[member][memberAttack]["attacks_left"] = members[member]["attacks_left"];
 						finalResult[member][memberAttack]["attack"] = attackCount + 1;
 						finalResult[member][memberAttack]["hydra"] = fullHydra;
 						finalResult[member][memberAttack]["hydra_damage"] = finalResult[fullHydra];
-						finalResult[member][memberAttack]["expected_damage"] = score>finalResult[fullHydra] ? finalResult[fullHydra] : score;
+						finalResult[member][memberAttack]["expected_damage"] = score > finalResult[fullHydra] ? finalResult[fullHydra] : score;
 					} else {
 						return;
 					}
@@ -1055,116 +1120,193 @@
 	function assignTargets(best) {
 		let colorCnt = 1,
 			hydra = $('input[name="hydra-toggle"]:checked').val();
-		jQuery.each(best, function(kv, res) {
+		jQuery.each(best, function (kv, res) {
 			let ignore = ["darkness", "water", "earth", "light", "wind", "fire", "TotalDamage", "ActualDamage", "WastedDamage"];
-			if(ignore.includes(kv)) {
+			if (ignore.includes(kv)) {
 				return;
 			}
 			let player = kv,
-				html = '';
-			jQuery.each(res, function(k, r) {
-				if(r['attack'] == 1) {
-					if(colorCnt == 1) {
+				html = "";
+			jQuery.each(res, function (k, r) {
+				if (r["attack"] == 1) {
+					if (colorCnt == 1) {
 						colorCnt = 2;
 					} else {
 						colorCnt = 1;
 					}
 				}
-				html += "<tr class='" + hydra + "-attack" + colorCnt + " '>" + "<td class='pt-0 pb-0'>" + player + "</td>" + "<td class='pt-0 pb-0'>" + r['attack'] + "</td>" + "<td class='pt-0 pb-0'>" + r['hydra'] + "</td>" + "<td class='pt-0 pb-0'>" + pn(r['expected_damage']) + "</td>" + "<td class='pt-0 pb-0'>" + pn(r['hydra_damage']) + "</td>" + "</tr>";
+				html +=
+					"<tr class='" +
+					hydra +
+					"-attack" +
+					colorCnt +
+					" '>" +
+					"<td class='pt-0 pb-0'>" +
+					player +
+					"</td>" +
+					"<td class='pt-0 pb-0'>" +
+					r["attack"] +
+					"</td>" +
+					"<td class='pt-0 pb-0'>" +
+					r["hydra"] +
+					"</td>" +
+					"<td class='pt-0 pb-0'>" +
+					pn(r["expected_damage"]) +
+					"</td>" +
+					"<td class='pt-0 pb-0'>" +
+					pn(r["hydra_damage"]) +
+					"</td>" +
+					"</tr>";
 			});
-			$('#assignedPlayers tr:last').after(html);
+			$("#assignedPlayers tr:last").after(html);
 		});
 	}
 
 	function displayLeftovers(leftovers) {
-		let lhtml = '';
-		jQuery.each(leftovers, function(lv, lres) {
+		let lhtml = "";
+		jQuery.each(leftovers, function (lv, lres) {
 			let player = lv;
-			if(lres['attacks_left'] == 0) {
+			if (lres["attacks_left"] == 0) {
 				return;
 			}
-			lhtml += "<tr>" + "<td class='pt-0 pb-0'>" + player + "</td>" + "<td class='pt-0 pb-0'>" + lres['attacks_left'] + "</td>" + "</tr>";
+			lhtml += "<tr>" + "<td class='pt-0 pb-0'>" + player + "</td>" + "<td class='pt-0 pb-0'>" + lres["attacks_left"] + "</td>" + "</tr>";
 		});
-		$('#leftOverAttacks tr:last').after(lhtml);
+		$("#leftOverAttacks tr:last").after(lhtml);
 	}
 
 	function setHydraDamage(fullHydras, damage) {
-
 		let hydra = $('input[name="hydra-toggle"]:checked').val(),
-			fullHydraStrength = JSON.parse(localStorage.getItem("hydras"))[hydra]/6,
-			darknessHealth = $('#range-darkness').val(),
-			waterHealth = $('#range-water').val(),
-			earthHealth = $('#range-earth').val(),
-			lightHealth = $('#range-light').val(),
-			windHealth = $('#range-wind').val(),
-			fireHealth = $('#range-fire').val(),
-			darkness = fullHydras["darkness"] >= damage["darkness"] ? fullHydras["darkness"] - damage["darkness"]-(fullHydras["darkness"]-darknessHealth) : 0,
-			water = fullHydras["water"] >= damage["water"] ? fullHydras["water"] - damage["water"]-(fullHydras["water"]-waterHealth) : 0,
-			earth = fullHydras["earth"] >= damage["earth"] ? fullHydras["earth"] - damage["earth"]-(fullHydras["earth"]-earthHealth) : 0,
-			light = fullHydras["light"] >= damage["light"] ? fullHydras["light"] - damage["light"]-(fullHydras["light"]-lightHealth) : 0,
-			wind = fullHydras["wind"] >= damage["wind"] ? fullHydras["wind"] - damage["wind"]-(fullHydras["wind"]-windHealth) : 0,
-			fire = fullHydras["fire"] >= damage["fire"] ? fullHydras["fire"] - damage["fire"]-(fullHydras["fire"]-fireHealth) : 0,
+			fullHydraStrength = JSON.parse(localStorage.getItem("hydras"))[hydra] / 6,
+			darknessHealth = $("#range-darkness").val(),
+			waterHealth = $("#range-water").val(),
+			earthHealth = $("#range-earth").val(),
+			lightHealth = $("#range-light").val(),
+			windHealth = $("#range-wind").val(),
+			fireHealth = $("#range-fire").val(),
+			darkness = fullHydras["darkness"] >= damage["darkness"] ? fullHydras["darkness"] - damage["darkness"] - (fullHydras["darkness"] - darknessHealth) : 0,
+			water = fullHydras["water"] >= damage["water"] ? fullHydras["water"] - damage["water"] - (fullHydras["water"] - waterHealth) : 0,
+			earth = fullHydras["earth"] >= damage["earth"] ? fullHydras["earth"] - damage["earth"] - (fullHydras["earth"] - earthHealth) : 0,
+			light = fullHydras["light"] >= damage["light"] ? fullHydras["light"] - damage["light"] - (fullHydras["light"] - lightHealth) : 0,
+			wind = fullHydras["wind"] >= damage["wind"] ? fullHydras["wind"] - damage["wind"] - (fullHydras["wind"] - windHealth) : 0,
+			fire = fullHydras["fire"] >= damage["fire"] ? fullHydras["fire"] - damage["fire"] - (fullHydras["fire"] - fireHealth) : 0,
 			darknessPercent = (damage["darkness"] / fullHydraStrength) * 100,
 			waterPercent = (damage["water"] / fullHydraStrength) * 100,
 			earthPercent = (damage["earth"] / fullHydraStrength) * 100,
 			lightPercent = (damage["light"] / fullHydraStrength) * 100,
 			windPercent = (damage["wind"] / fullHydraStrength) * 100,
 			firePercent = (damage["fire"] / fullHydraStrength) * 100,
-			darknessHealthPercent = ((fullHydraStrength-darknessHealth) / fullHydraStrength) * 100,
-			waterHealthPercent = ((fullHydraStrength-waterHealth) / fullHydraStrength) * 100,
-			earthHealthPercent = ((fullHydraStrength-earthHealth) / fullHydraStrength) * 100,
-			lightHealthPercent = ((fullHydraStrength-lightHealth) / fullHydraStrength) * 100,
-			windHealthPercent = ((fullHydraStrength-windHealth) / fullHydraStrength) * 100,
-			fireHealthPercent = ((fullHydraStrength-fireHealth) / fullHydraStrength) * 100;
+			darknessHealthPercent = ((fullHydraStrength - darknessHealth) / fullHydraStrength) * 100,
+			waterHealthPercent = ((fullHydraStrength - waterHealth) / fullHydraStrength) * 100,
+			earthHealthPercent = ((fullHydraStrength - earthHealth) / fullHydraStrength) * 100,
+			lightHealthPercent = ((fullHydraStrength - lightHealth) / fullHydraStrength) * 100,
+			windHealthPercent = ((fullHydraStrength - windHealth) / fullHydraStrength) * 100,
+			fireHealthPercent = ((fullHydraStrength - fireHealth) / fullHydraStrength) * 100;
 		// set hydra head color based on selection
-		$("#darkness-head ,#water-head ,#earth-head ,#light-head ,#wind-head ,#fire-head").removeClass().addClass(hydra + "-attack1");
+		$("#darkness-head ,#water-head ,#earth-head ,#light-head ,#wind-head ,#fire-head")
+			.removeClass()
+			.addClass(hydra + "-attack1");
+		// adjust all the head results. each head has three parts, damage leftover health and discounted damage
+		$("#darknessProgress")
+			.width(darknessPercent + "%")
+			.text(pn(damage["darkness"]))
+			.attr("aria-valuenow", damage["darkness"])
+			.attr("aria-valuemax", fullHydras["darkness"]);
+		$("#darknessProgressDamage")
+			.width(100 - darknessHealthPercent - darknessPercent + "%")
+			.text(pn(darkness))
+			.attr("aria-valuenow", darkness);
+		$("#darknessProgressHealth")
+			.width(darknessHealthPercent + "%")
+			.text(pn(fullHydraStrength - darknessHealth))
+			.attr("aria-valuenow", darkness);
 
-		$("#darknessProgress").width(darknessPercent + '%').text(pn(damage["darkness"])).attr('aria-valuenow', damage["darkness"]).attr('aria-valuemax', fullHydras["darkness"]);
-		$("#darknessProgressDamage").width((100-darknessHealthPercent) - darknessPercent + '%').text(pn(darkness)).attr('aria-valuenow', darkness);
-		$("#darknessProgressHealth").width(darknessHealthPercent + '%').text(pn((fullHydraStrength-darknessHealth))).attr('aria-valuenow', darkness);
+		$("#waterProgress")
+			.width(waterPercent + "%")
+			.text(pn(damage["water"]))
+			.attr("aria-valuenow", damage["water"])
+			.attr("aria-valuemax", fullHydras["water"]);
+		$("#waterProgressDamage")
+			.width(100 - waterHealthPercent - waterPercent + "%")
+			.text(pn(water))
+			.attr("aria-valuenow", water);
+		$("#waterProgressHealth")
+			.width(waterHealthPercent + "%")
+			.text(pn(fullHydraStrength - waterHealth))
+			.attr("aria-valuenow", water);
 
+		$("#earthProgress")
+			.width(earthPercent + "%")
+			.text(pn(damage["earth"]))
+			.attr("aria-valuenow", damage["earth"])
+			.attr("aria-valuemax", fullHydras["earth"]);
+		$("#earthProgressDamage")
+			.width(100 - earthHealthPercent - earthPercent + "%")
+			.text(pn(earth))
+			.attr("aria-valuenow", earth);
+		$("#earthProgressHealth")
+			.width(earthHealthPercent + "%")
+			.text(pn(fullHydraStrength - earthHealth))
+			.attr("aria-valuenow", earth);
 
-		$("#waterProgress").width(waterPercent + '%').text(pn(damage["water"])).attr('aria-valuenow', damage["water"]).attr('aria-valuemax', fullHydras["water"]);
-		$("#waterProgressDamage").width((100-waterHealthPercent) - waterPercent + '%').text(pn(water)).attr('aria-valuenow', water);
-		$("#waterProgressHealth").width(waterHealthPercent + '%').text(pn((fullHydraStrength-waterHealth))).attr('aria-valuenow', water);
+		$("#lightProgress")
+			.width(lightPercent + "%")
+			.text(pn(damage["light"]))
+			.attr("aria-valuenow", damage["light"])
+			.attr("aria-valuemax", fullHydras["light"]);
+		$("#lightProgressDamage")
+			.width(100 - lightHealthPercent - lightPercent + "%")
+			.text(pn(light))
+			.attr("aria-valuenow", light);
+		$("#lightProgressHealth")
+			.width(lightHealthPercent + "%")
+			.text(pn(fullHydraStrength - lightHealth))
+			.attr("aria-valuenow", light);
 
+		$("#windProgress")
+			.width(windPercent + "%")
+			.text(pn(damage["wind"]))
+			.attr("aria-valuenow", damage["wind"])
+			.attr("aria-valuemax", fullHydras["wind"]);
+		$("#windProgressDamage")
+			.width(100 - windHealthPercent - windPercent + "%")
+			.text(pn(wind))
+			.attr("aria-valuenow", wind);
+		$("#windProgressHealth")
+			.width(windHealthPercent + "%")
+			.text(pn(fullHydraStrength - windHealth))
+			.attr("aria-valuenow", wind);
 
-		$("#earthProgress").width(earthPercent + '%').text(pn(damage["earth"])).attr('aria-valuenow', damage["earth"]).attr('aria-valuemax', fullHydras["earth"]);
-		$("#earthProgressDamage").width((100-earthHealthPercent) - earthPercent + '%').text(pn(earth)).attr('aria-valuenow', earth);
-		$("#earthProgressHealth").width(earthHealthPercent + '%').text(pn((fullHydraStrength-earthHealth))).attr('aria-valuenow', earth);
-
-
-		$("#lightProgress").width(lightPercent + '%').text(pn(damage["light"])).attr('aria-valuenow', damage["light"]).attr('aria-valuemax', fullHydras["light"]);
-		$("#lightProgressDamage").width((100-lightHealthPercent) - lightPercent + '%').text(pn(light)).attr('aria-valuenow', light);
-		$("#lightProgressHealth").width(lightHealthPercent + '%').text(pn((fullHydraStrength-lightHealth))).attr('aria-valuenow', light);
-
-
-		$("#windProgress").width(windPercent + '%').text(pn(damage["wind"])).attr('aria-valuenow', damage["wind"]).attr('aria-valuemax', fullHydras["wind"]);
-		$("#windProgressDamage").width((100-windHealthPercent) - windPercent + '%').text(pn(wind)).attr('aria-valuenow', wind);
-		$("#windProgressHealth").width(windHealthPercent + '%').text(pn((fullHydraStrength-windHealth))).attr('aria-valuenow', wind);
-
-
-		$("#fireProgress").width(firePercent + '%').text(pn(damage["fire"])).attr('aria-valuenow', damage["fire"]).attr('aria-valuemax', fullHydras["fire"]);
-		$("#fireProgressDamage").width((100-fireHealthPercent) - firePercent + '%').text(pn(fire)).attr('aria-valuenow', fire);
-		$("#fireProgressHealth").width(fireHealthPercent + '%').text(pn((fullHydraStrength-fireHealth))).attr('aria-valuenow', fire);
+		$("#fireProgress")
+			.width(firePercent + "%")
+			.text(pn(damage["fire"]))
+			.attr("aria-valuenow", damage["fire"])
+			.attr("aria-valuemax", fullHydras["fire"]);
+		$("#fireProgressDamage")
+			.width(100 - fireHealthPercent - firePercent + "%")
+			.text(pn(fire))
+			.attr("aria-valuenow", fire);
+		$("#fireProgressHealth")
+			.width(fireHealthPercent + "%")
+			.text(pn(fullHydraStrength - fireHealth))
+			.attr("aria-valuenow", fire);
 	}
 
 	function getBestTest() {
 		$("#assignedPlayers ,#leftOverAttacks").find("tr:gt(0)").remove();
-		let darknessHealth = $('#range-darkness').val(),
-			waterHealth = $('#range-water').val(),
-			earthHealth = $('#range-earth').val(),
-			lightHealth = $('#range-light').val(),
-			windHealth = $('#range-wind').val(),
-			fireHealth = $('#range-fire').val(),
+		let darknessHealth = $("#range-darkness").val(),
+			waterHealth = $("#range-water").val(),
+			earthHealth = $("#range-earth").val(),
+			lightHealth = $("#range-light").val(),
+			windHealth = $("#range-wind").val(),
+			fireHealth = $("#range-fire").val(),
 			hydra = $('input[name="hydra-toggle"]:checked').val(),
 			fullHydras = {
-				"darkness": darknessHealth,
-				"water": waterHealth,
-				"earth": earthHealth,
-				"light": lightHealth,
-				"wind": windHealth,
-				"fire": fireHealth,
+				darkness: darknessHealth,
+				water: waterHealth,
+				earth: earthHealth,
+				light: lightHealth,
+				wind: windHealth,
+				fire: fireHealth,
 			},
 			prerun = [],
 			run = [];
@@ -1178,7 +1320,7 @@
 		run[1] = prerun[1][0];
 		run[2] = prerun[2][0];
 		run[3] = prerun[3][0];
-		jQuery.each(run, function(k, r) {
+		jQuery.each(run, function (k, r) {
 			let totalDamage = 0;
 			totalDamage = fullHydras["darkness"] > r["darkness"] ? totalDamage + r["darkness"] : totalDamage + fullHydras["darkness"];
 			totalDamage = fullHydras["water"] > r["water"] ? totalDamage + r["water"] : totalDamage + fullHydras["water"];
@@ -1190,200 +1332,211 @@
 			run[k]["ActualDamage"] = r["darkness"] + r["water"] + r["earth"] + r["light"] + r["wind"] + r["fire"];
 			run[k]["WastedDamage"] = run[k]["ActualDamage"] - totalDamage;
 		});
-		const bestRun = sortMembers(run, 'ActualDamage', dir = "desc")[0];//
+		const bestRun = sortMembers(run, "ActualDamage")[0];
 		assignTargets(bestRun[1]);
 		displayLeftovers(prerun[bestRun[0]][1]);
 		setHydraDamage(fullHydras, bestRun[1]);
 		$("#warResults").show();
 	}
-	function updateHydrasDamage(hydra,head,value) {
+	function updateHydrasDamage(hydra, head, value) {
 		let hydraDamage = JSON.parse(localStorage.getItem("hydrasDamage"));
 		hydraDamage[head][hydra] = value;
-		localStorage.setItem('hydrasDamage', JSON.stringify(hydraDamage));
+		localStorage.setItem("hydrasDamage", JSON.stringify(hydraDamage));
 	}
 	// range slider
 	function displayHydraDamageSliders() {
 		// get current hydra head
-		const hydra = $('input[name="hydra-toggle"]:checked').val();
-		const hydraDamage = JSON.parse(localStorage.getItem("hydrasDamage"));
-		// get the selected hydra damages
-		const fullHydrasStrength = JSON.parse(localStorage.getItem("hydras"))[hydra];
-		const fullHydras = {
-			"darkness": fullHydrasStrength / 6,
-			"water": fullHydrasStrength / 6,
-			"earth": fullHydrasStrength / 6,
-			"light": fullHydrasStrength / 6,
-			"wind": fullHydrasStrength / 6,
-			"fire": fullHydrasStrength / 6,
-		};
+		const hydra = $('input[name="hydra-toggle"]:checked').val(),
+			hydraDamage = JSON.parse(localStorage.getItem("hydrasDamage")),
+			// get the selected hydra damages
+			fullHydrasStrength = JSON.parse(localStorage.getItem("hydras"))[hydra],
+			fullHydras = {
+				darkness: fullHydrasStrength / 6,
+				water: fullHydrasStrength / 6,
+				earth: fullHydrasStrength / 6,
+				light: fullHydrasStrength / 6,
+				wind: fullHydrasStrength / 6,
+				fire: fullHydrasStrength / 6,
+			};
 		this.hydra = hydra;
 		this.hydraDamage = hydraDamage;
 		var self = this;
-		jQuery.each(fullHydras, function(k, r) {
+		jQuery.each(fullHydras, function (k, r) {
 			let damage = self.hydraDamage,
 				headStrength = r,
 				head = k,
-				currentStrength = headStrength - damage[head][hydra];
-			let
-					range = document.getElementById('range-'+head),
-					rangeV = document.getElementById('rangeV-'+head),
-					setValue = ()=>{
-						let
-								newValue = Number( (range.value - range.min) * 100 / (range.max - range.min) ),
-								newPosition = 10 - (newValue * 0.2);
-						rangeV.innerHTML = `<span>${pn(range.value)}</span>`;
-						rangeV.style.left = `calc(${newValue}% + (${newPosition}px))`;
-						updateHydrasDamage(self.hydra,head,headStrength-range.value);
-					};
+				currentStrength = headStrength - damage[head][hydra],
+				range = document.getElementById("range-" + head),
+				rangeV = document.getElementById("rangeV-" + head),
+				setValue = () => {
+					let newValue = Number(((range.value - range.min) * 100) / (range.max - range.min)),
+							newPosition = 10 - newValue * 0.2;
+					rangeV.innerHTML = `<span>${pn(range.value)}</span>`;
+					rangeV.style.left = `calc(${newValue}% + (${newPosition}px))`;
+					updateHydrasDamage(self.hydra, head, headStrength - range.value);
+				};
 
 			document.addEventListener("DOMContentLoaded", setValue);
-			range.addEventListener('input', setValue);
-			document.getElementById('range-'+head).max = headStrength;
-			document.getElementById('range-'+head).value = currentStrength;
+			range.addEventListener("input", setValue);
+			document.getElementById("range-" + head).max = headStrength;
+			document.getElementById("range-" + head).value = currentStrength;
 			rangeV.innerHTML = `<span>${pn(range.value)}</span>`;
-			rangeV.style.left = `calc(${Number( (range.value - range.min) * 100 / (range.max - range.min) )}% + (${10 - (Number( (range.value - range.min) * 100 / (range.max - range.min) ) * 0.2)}px))`;
+			rangeV.style.left = `calc(${Number(((range.value - range.min) * 100) / (range.max - range.min))}% + (${10 - Number(((range.value - range.min) * 100) / (range.max - range.min)) * 0.2}px))`;
 		});
 	}
 	function randomMessage() {
 		const quotes = [
-				"HumanExhaust - Pale Rider should apologize.",
-				"Thomas Edison - Genius is one percent inspiration and ninety-nine percent perspiration.",
-				"Yogi Berra - You can observe a lot just by watching.",
-				"Abraham Lincoln - A house divided against itself cannot stand.",
-				"Johann Wolfgang von Goethe - Difficulties increase the nearer we get to the goal.",
-				"Byron Pulsifer - Fate is in your hands and no one elses",
-				"Lao Tzu - Be the chief but never the lord.",
-				"Carl Sandburg - Nothing happens unless first we dream.",
-				"Aristotle - Well begun is half done.",
-				"Yogi Berra - Life is a learning experience, only if you learn.",
-				"Margaret Sangster - Self-complacency is fatal to progress.",
-				"Buddha - Peace comes from within. Do not seek it without.",
-				"Byron Pulsifer - What you give is what you get.",
-				"Iris Murdoch - We can only learn to love by loving.",
-				"Chinese proverb - Learning is a treasure that will follow its owner everywhere",
-				"Socrates - Be as you wish to seem.",
-				"V. Naipaul - The world is always in movement.",
-				"John Wooden - Never mistake activity for achievement.",
-				"Haddon Robinson - What worries you masters you.",
-				"Pearl Buck - One faces the future with ones past.",
-				"Brian Tracy - Goals are the fuel in the furnace of achievement.",
-				"Leonardo da Vinci - Who sows virtue reaps honour.",
-				"Dalai Lama - Be kind whenever possible. It is always possible.",
-				"Chinese proverb - Talk doesn't cook rice.",
-				"Buddha - He is able who thinks he is able.",
-				"Larry Elder - A goal without a plan is just a wish.",
-				"Michael Korda - To succeed, we must first believe that we can.",
-				"Albert Einstein - Learn from yesterday, live for today, hope for tomorrow.",
-				"James Lowell - A weed is no more than a flower in disguise.",
-				"Yoda - Do, or do not. There is no try.",
-				"Harriet Beecher Stowe - All serious daring starts from within.",
-				"Byron Pulsifer - The best teacher is experience learned from failures.",
-				"Murray Gell-Mann - Think how hard physics would be if particles could think.",
-				"John Lennon - Love is the flower you've got to let grow.",
-				"Napoleon Hill - Don't wait. The time will never be just right.",
-				"Pericles - Time is the wisest counsellor of all.",
-				"Napoleon Hill - You give before you get.",
-				"Socrates - Wisdom begins in wonder.",
-				"Baltasar Gracian - Without courage, wisdom bears no fruit.",
-				"Aristotle - Change in all things is sweet.",
-				"Byron Pulsifer - What you fear is that which requires action to overcome.",
-				"Cullen Hightower - When performance exceeds ambition, the overlap is called success.",
-				"African proverb - When deeds speak, words are nothing.",
-				"Wayne Dyer - Real magic in relationships means an absence of judgement of others.",
-				"Albert Einstein - I never think of the future. It comes soon enough."
+			"HumanExhaust - Pale Rider should apologize.",
+			"Thomas Edison - Genius is one percent inspiration and ninety-nine percent perspiration.",
+			"Yogi Berra - You can observe a lot just by watching.",
+			"Abraham Lincoln - A house divided against itself cannot stand.",
+			"Johann Wolfgang von Goethe - Difficulties increase the nearer we get to the goal.",
+			"Byron Pulsifer - Fate is in your hands and no one elses",
+			"Lao Tzu - Be the chief but never the lord.",
+			"Carl Sandburg - Nothing happens unless first we dream.",
+			"Aristotle - Well begun is half done.",
+			"Yogi Berra - Life is a learning experience, only if you learn.",
+			"Margaret Sangster - Self-complacency is fatal to progress.",
+			"Buddha - Peace comes from within. Do not seek it without.",
+			"Byron Pulsifer - What you give is what you get.",
+			"Iris Murdoch - We can only learn to love by loving.",
+			"Chinese proverb - Learning is a treasure that will follow its owner everywhere",
+			"Socrates - Be as you wish to seem.",
+			"V. Naipaul - The world is always in movement.",
+			"John Wooden - Never mistake activity for achievement.",
+			"Haddon Robinson - What worries you masters you.",
+			"Pearl Buck - One faces the future with ones past.",
+			"Brian Tracy - Goals are the fuel in the furnace of achievement.",
+			"Leonardo da Vinci - Who sows virtue reaps honour.",
+			"Dalai Lama - Be kind whenever possible. It is always possible.",
+			"Chinese proverb - Talk doesn't cook rice.",
+			"Buddha - He is able who thinks he is able.",
+			"Larry Elder - A goal without a plan is just a wish.",
+			"Michael Korda - To succeed, we must first believe that we can.",
+			"Albert Einstein - Learn from yesterday, live for today, hope for tomorrow.",
+			"James Lowell - A weed is no more than a flower in disguise.",
+			"Yoda - Do, or do not. There is no try.",
+			"Harriet Beecher Stowe - All serious daring starts from within.",
+			"Byron Pulsifer - The best teacher is experience learned from failures.",
+			"Murray Gell-Mann - Think how hard physics would be if particles could think.",
+			"John Lennon - Love is the flower you've got to let grow.",
+			"Napoleon Hill - Don't wait. The time will never be just right.",
+			"Pericles - Time is the wisest counsellor of all.",
+			"Napoleon Hill - You give before you get.",
+			"Socrates - Wisdom begins in wonder.",
+			"Baltasar Gracian - Without courage, wisdom bears no fruit.",
+			"Aristotle - Change in all things is sweet.",
+			"Byron Pulsifer - What you fear is that which requires action to overcome.",
+			"Cullen Hightower - When performance exceeds ambition, the overlap is called success.",
+			"African proverb - When deeds speak, words are nothing.",
+			"Wayne Dyer - Real magic in relationships means an absence of judgement of others.",
+			"Albert Einstein - I never think of the future. It comes soon enough.",
 		];
-		let randomNumber = Math.floor(Math.random() * (quotes.length));
-		document.getElementById('randomMessage').innerHTML = quotes[randomNumber];
+		let randomNumber = Math.floor(Math.random() * quotes.length);
+		document.getElementById("randomMessage").innerHTML = quotes[randomNumber];
 	}
-	$(document).ready(function() {
-		let $th = $('.tableFixHead').find('thead th');
-		$('.tableFixHead').on('scroll', function() {
-			$th.css('transform', 'translateY(' + this.scrollTop + 'px)');
+	$(document).ready(function () {
+		let $th = $(".tableFixHead").find("thead th");
+		$(".tableFixHead").on("scroll", function () {
+			$th.css("transform", "translateY(" + this.scrollTop + "px)");
 		});
 		// if localstorage dont have players than make an empty array so we dont have errors later
-		if(localStorage.getItem("players") === null) {
-			localStorage.setItem('players', JSON.stringify({}));
+		if (localStorage.getItem("players") === null) {
+			localStorage.setItem("players", JSON.stringify({}));
 		}
 		// if localstorage dont have settings then set it. This is where all the general settings are stored
-		if(localStorage.getItem("settings") === null) {
-			localStorage.setItem('settings', JSON.stringify({
-				"displayNumberFormat": "abbr"
-			}));
+		if (localStorage.getItem("settings") === null) {
+			localStorage.setItem(
+					"settings",
+					JSON.stringify({
+						displayNumberFormat: "abbr",
+					})
+			);
 		}
 		// set hydra strength
-		if(localStorage.getItem("hydras") === null) {
-			localStorage.setItem('hydras', JSON.stringify({
-				"common": 35681436,
-				"elder": 106198380,
-				"ancient": 327198942,
-				"dreadful": 641891634,
-				"legendary": 1323641376,
-			}));
+		if (localStorage.getItem("hydras") === null) {
+			localStorage.setItem(
+					"hydras",
+					JSON.stringify({
+						common: 35681436,
+						elder: 106198380,
+						ancient: 327198942,
+						dreadful: 641891634,
+						legendary: 1323641376,
+					})
+			);
 		}
 		// if localstorage dont have players than make an empty array so we dont have errors later
-		if(localStorage.getItem("overageHydraBuffer") === null) {
-			localStorage.setItem('overageHydraBuffer', JSON.stringify({
-				"common": 1000000,
-				"elder": 1000000,
-				"ancient": 1000000,
-				"dreadful": 1000000,
-				"legendary": 1000000,
-			}));
+		if (localStorage.getItem("overageHydraBuffer") === null) {
+			localStorage.setItem(
+					"overageHydraBuffer",
+					JSON.stringify({
+						common: 1000000,
+						elder: 1000000,
+						ancient: 1000000,
+						dreadful: 1000000,
+						legendary: 1000000,
+					})
+			);
 		}
 		// set hydra current damage
-		if(localStorage.getItem("hydrasDamage") === null) {
-			localStorage.setItem('hydrasDamage', JSON.stringify({
-				"darkness": {
-					"common": 0,
-					"elder": 0,
-					"ancient": 0,
-					"dreadful": 0,
-					"legendary": 0,
-				},
-				"water": {
-					"common": 0,
-					"elder": 0,
-					"ancient": 0,
-					"dreadful": 0,
-					"legendary": 0,
-				},
-				"earth": {
-					"common": 0,
-					"elder": 0,
-					"ancient": 0,
-					"dreadful": 0,
-					"legendary": 0,
-				},
-				"light": {
-					"common": 0,
-					"elder": 0,
-					"ancient": 0,
-					"dreadful": 0,
-					"legendary": 0,
-				},
-				"wind": {
-					"common": 0,
-					"elder": 0,
-					"ancient": 0,
-					"dreadful": 0,
-					"legendary": 0,
-				},
-				"fire": {
-					"common": 0,
-					"elder": 0,
-					"ancient": 0,
-					"dreadful": 0,
-					"legendary": 0,
-				},
-			}));
+		if (localStorage.getItem("hydrasDamage") === null) {
+			localStorage.setItem(
+					"hydrasDamage",
+					JSON.stringify({
+						darkness: {
+							common: 0,
+							elder: 0,
+							ancient: 0,
+							dreadful: 0,
+							legendary: 0,
+						},
+						water: {
+							common: 0,
+							elder: 0,
+							ancient: 0,
+							dreadful: 0,
+							legendary: 0,
+						},
+						earth: {
+							common: 0,
+							elder: 0,
+							ancient: 0,
+							dreadful: 0,
+							legendary: 0,
+						},
+						light: {
+							common: 0,
+							elder: 0,
+							ancient: 0,
+							dreadful: 0,
+							legendary: 0,
+						},
+						wind: {
+							common: 0,
+							elder: 0,
+							ancient: 0,
+							dreadful: 0,
+							legendary: 0,
+						},
+						fire: {
+							common: 0,
+							elder: 0,
+							ancient: 0,
+							dreadful: 0,
+							legendary: 0,
+						},
+					})
+			);
 		}
 		// now that all the data is set lets get the party started. SHOW ALL THE THINGS!!!
 		displayPlayers();
 		displayHydra();
 		displayHydraDamageSliders();
-		$('input:radio[name=numberFormat]').filter('[value='+JSON.parse(localStorage.getItem("settings"))["displayNumberFormat"]+']').prop('checked', true);
+		$("input:radio[name=numberFormat]")
+				.filter("[value=" + JSON.parse(localStorage.getItem("settings"))["displayNumberFormat"] + "]")
+				.prop("checked", true);
 	});
-	</script>
+</script>
 </body>
-
 </html>
