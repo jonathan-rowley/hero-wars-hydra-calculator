@@ -1,5 +1,8 @@
 # hero-wars-hydra-calculator
 
+![image](https://user-images.githubusercontent.com/50716090/126901061-3e8bf848-9243-4718-ac40-89093302244f.png)
+
+
 This is a tool that helps with the mobile game Hero Wars. It helps plan attacks on Hydras in Guilds.
 
 
@@ -18,3 +21,6 @@ Features:
  -    It tells you the predicted damage to each head
  -    You can set the Hydra heads current damage so you are not assigning targets to something dead already
  -    You can set the number output format to shorthand or full
+
+
+![image](https://user-images.githubusercontent.com/50716090/126901088-16ea726b-4f0d-4181-be36-cdfe137b848a.png)
