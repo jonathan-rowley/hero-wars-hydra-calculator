@@ -346,7 +346,7 @@
 		<tbody></tbody>
 	</table>
 	<div class="input-group mb-3">
-		<input type="text" class="form-control" id="player[name]" name="player[name]" placeholder="Add Player" aria-label="Add Player" aria-describedby="basic-addon2" />
+		<input type="text" class="form-control" id="player[name]" name="player[name]" placeholder="Add Player" aria-label="Add Player" aria-describedby="basic-addon2" onkeydown="setPlayer()"/>
 		<div class="input-group-append">
 			<button class="btn btn-outline-secondary" type="button" onclick="setPlayer();"><i class="fas fa-user-plus"></i></button>
 		</div>
@@ -881,12 +881,17 @@
 	}
 
 	function setPlayer() {
+		if(event.key !== 'Enter') {
+			return;
+		}
+		
 		if (document.getElementById("player[name]").value == "") {
 			alert("Your Player must have a name.");
 			return;
 		}
 		let players = JSON.parse(localStorage.getItem("players")),
 			name = document.getElementById("player[name]").value.replace(/ /g, "-");
+			
 		players[name] = {
 			name: document.getElementById("player[name]").value,
 			attacks: 3,
